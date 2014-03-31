@@ -20,30 +20,6 @@ public class GeneticSolver {
 		this.generationLimit = generationLimit;
 	}
 
-	int[] procreate(
-			int[] parentOne,
-			int[] parentTwo,
-			int min,
-			int max
-	) {
-		if (parentOne.length != parentTwo.length) {
-			throw new IllegalArgumentException("The list sizes must be equal.");
-		}
-		int[] child = new int[parentOne.length];
-		Random rng = new Random();
-
-		for (int i = 0; i < parentOne.length; i++) {
-			if (rng.nextDouble() < mutationRate) {
-				child[i] = rng.nextInt(max - min) - min;
-			} else if (rng.nextDouble() < 0.5) {
-				child[i] = parentOne[i];
-			} else {
-				child[i] = parentTwo[i];
-			}
-		}
-		return child;
-	}
-
 	public int[] evolve(List<int[]> currentGeneration) {
 		int length = currentGeneration.get(0).length;
 		for (int i = 1; i < currentGeneration.size(); i++) {
@@ -77,12 +53,5 @@ public class GeneticSolver {
 	 */
 	List<int[]> survivalStage(List<int[]> generation, int numSurvivors) {
 		return null;
-	}
-
-	/**
-	 * Given an individual, return it's score
-	 */
-	int score(int[] individual) {
-		return 0;
 	}
 }
